@@ -20,7 +20,7 @@ function config() {
     LOGDIR=/var/log/noip-renew/$USER
     INSTDIR=/usr/local/bin
     INSTEXE=$INSTDIR/noip-renew-$USER.sh
-    CRONJOB="0 1    * * *   $USER    $INSTEXE $LOGDIR"
+    CRONJOB="0 1    * * *   $INSTEXE $LOGDIR"
 }
 
 function install() {
@@ -60,14 +60,7 @@ function install_debian(){
 
         $SUDO apt -y install cron 
 
-        PYV=`python3 -c "import sys;t='{v[0]}{v[1]}'.format(v=list(sys.version_info[:2]));sys.stdout.write(t)";`
-        if [[ "$PYV" -lt "36" ]] || ! hash python3;
-        then
-            echo "This script requires Python version 3.6 or higher. Attempting to install..."
-            $SUDO apt-get -y install python3
-        fi
-
-        $SUDO apt -y install chromium-browser # Update Chromium Browser or script won't work.
+        #$SUDO apt -y install chromium-browser # Update Chromium Browser or script won't work.
         $SUDO apt -y install $PYTHON-pip
 }
 
