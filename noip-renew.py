@@ -15,6 +15,7 @@
 
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
 from datetime import date
 from datetime import timedelta
 import time
@@ -71,11 +72,11 @@ class Robot:
             self.browser.save_screenshot("debug1.png")
 
         self.logger.log("Logging in...")
-        ele_usr = self.browser.find_element_by_xpath("//form[@id='clogs']/input[@name='username']")
-        ele_pwd = self.browser.find_element_by_xpath("//form[@id='clogs']/input[@name='password']")
+        ele_usr = self.browser.find_element(by=By.XPATH, value="//form[@id='clogs']/input[@name='username']")
+        ele_pwd = self.browser.find_element(by=By.XPATH, value="//form[@id='clogs']/input[@name='password']")
         ele_usr.send_keys(self.username)
         ele_pwd.send_keys(base64.b64decode(self.password).decode('utf-8'))
-        self.browser.find_element_by_xpath("//form[@id='clogs']/button[@type='submit']").click()
+        self.browser.find_element(by=By.XPATH, value="//form[@id='clogs']/button[@type='submit']").click()
         if self.debug > 1:
             time.sleep(1)
             self.browser.save_screenshot("debug2.png")
@@ -134,15 +135,15 @@ class Robot:
         self.logger.log("Updating " + host_name)
         host_button.click()
         time.sleep(3)
-        self.browser.find_element_by_xpath("//input[@value='Update Hostname']").click()
+        self.browser.find_element(by=By.XPATH, value="//input[@value='Update Hostname']").click()
         time.sleep(1)
         self.browser.save_screenshot(host_name + "_success.png")
 
     def get_host_expiration_days(self, host_name, iteration):
         try:
-            host_a = self.browser.find_element_by_xpath("//a[contains(text(), '" + host_name + "')]")
-            host = host_a.find_element_by_xpath(".//parent::td[@data-title='Host']")
-            host_remaining_days = host.find_element_by_xpath(".//a[contains(@class,'no-link-style')]").text
+            host_a = self.browser.find_element(by=By.XPATH, value="//a[contains(text(), '" + host_name + "')]")
+            host = host_a.find_element(by=By.XPATH, value=".//parent::td[@data-title='Host']")
+            host_remaining_days = host.find_element(by=By.XPATH, value=".//a[contains(@class,'no-link-style')]").text
         except:
             host_remaining_days = "Expires in 7 days"
             pass
@@ -153,11 +154,11 @@ class Robot:
         return expiration_days
 
     def get_host_button(self, host_name):
-        host_td = self.browser.find_element_by_xpath("//td[contains(text(), '" + host_name + "')]")
-        return host_td.find_element_by_xpath(".//following-sibling::td/a[contains(text(), 'Modify')]")
+        host_td = self.browser.find_element(by=By.XPATH, value="//td[contains(text(), '" + host_name + "')]")
+        return host_td.find_element(by=By.XPATH, value=".//following-sibling::td/a[contains(text(), 'Modify')]")
 
     def get_hosts(self):
-        host_tds = self.browser.find_elements_by_xpath("//td[@scope='row'][contains(@class, 'pull-left')]")
+        host_tds = self.browser.find_elements(by=By.XPATH, value="//td[@scope='row'][contains(@class, 'pull-left')]")
         if len(host_tds) == 0:
             raise Exception("No hosts or host table rows not found")
         return host_tds
