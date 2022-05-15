@@ -72,8 +72,8 @@ class Robot:
             self.browser.save_screenshot("debug1.png")
 
         self.logger.log("Logging in...")
-        ele_usr = self.browser.find_element(by=By.XPATH, value="//form[@id='clogs']/input[@name='username']")
-        ele_pwd = self.browser.find_element(by=By.XPATH, value="//form[@id='clogs']/input[@name='password']")
+        ele_usr = self.browser.find_element(by=By.XPATH, value="//form[@id='clogs']//input[@name='username']")
+        ele_pwd = self.browser.find_element(by=By.XPATH, value="//form[@id='clogs']//input[@name='password']")
         ele_usr.send_keys(self.username)
         ele_pwd.send_keys(base64.b64decode(self.password).decode('utf-8'))
         self.browser.find_element(by=By.XPATH, value="//form[@id='clogs']/button[@type='submit']").click()
