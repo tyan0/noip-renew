@@ -1,3 +1,6 @@
+# Original repository
+https://github.com/loblab/noip-renew
+
 # Script to auto renew/confirm noip.com free hosts
 
 [noip.com](https://www.noip.com/) free hosts expire every month.
@@ -5,9 +8,9 @@ This script auto clicks web pages to renew the hosts,
 using Python/Selenium with Chrome headless mode.
 
 - Platform: Debian/Ubuntu/Raspbian/Arch Linux, no GUI needed (tested on Debian 9.x/10.x/Arch Linux); python 3.6+
-- Ver: 1.2
+- Ver: x.x
 - Ref: [Technical explanation for the code (Chinese)](http://www.jianshu.com/p/3c8196175147)
-- Updated: 1/2/2021
+- Updated: 5/16/2022
 - Created: 11/04/2017
 - Author: loblab
 - Contributor: [IDemixI](https://www.github.com/IDemixI)
@@ -47,6 +50,7 @@ You can also check [DNS-O-Matic](https://dnsomatic.com/) to update multiple noip
 If you need notification functionality, please try [IDemixI's branch](https://github.com/IDemixI/noip-renew/tree/notifications).
 
 ## History
+- x.x (05/23/2021): Modified much by T.Yano.
 - 1.2 (01/02/2021): Merged all pull requests in latest months: make it work for updated noip.com site.
 - 1.1 (06/05/2020): Fixed error when attempting to update an expired host.
 - 1.0 (05/18/2020): Minor fixes to an xpath & a try catch pass to avoid an exception. Also fixed versioning.
