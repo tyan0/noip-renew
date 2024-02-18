@@ -158,7 +158,7 @@ class Robot:
         return host_td.find_element(by=By.XPATH, value=".//following-sibling::td/a[contains(text(), 'Modify')]")
 
     def get_hosts(self):
-        host_tds = self.browser.find_elements(by=By.XPATH, value="//td[@scope='row'][contains(@class, 'pull-left')]")
+        host_tds = self.browser.find_elements(by=By.XPATH, value="//td[@scope='row'][contains(@class, 'overflow-wrap')]")
         if len(host_tds) == 0:
             raise Exception("No hosts or host table rows not found")
         return host_tds
